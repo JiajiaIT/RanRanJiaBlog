@@ -18,5 +18,9 @@ namespace Factory
         {
             return (I_Extend)Assembly.Load("DAL").CreateInstance("DAL.D_Extend");
         }
+        public static I_Category GetCategory()
+        {
+            return (I_Category)Assembly.Load("DAL").CreateInstance("DAL.D_Category");
+        }
     }
 }

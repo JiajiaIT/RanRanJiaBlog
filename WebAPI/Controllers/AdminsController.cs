@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using EntityModel;
 using BLL;
-using Common;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
