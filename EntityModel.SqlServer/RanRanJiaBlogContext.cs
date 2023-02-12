@@ -31,7 +31,7 @@ public partial class RanRanJiaBlogContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=JIAJIA\\JIAJIA;Initial Catalog=RanRanJiaBlog;User ID=sa;Password=123456;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Data Source=JIAJIA\\JIAJIA;Initial Catalog=RanRanJiaBlog;User ID=sa;Password=123456;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -75,13 +75,16 @@ public partial class RanRanJiaBlogContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Category).HasMaxLength(500);
             entity.Property(e => e.Content).HasColumnType("text");
-            entity.Property(e => e.CreateBy).HasMaxLength(500);
             entity.Property(e => e.CreateTime).HasColumnType("datetime");
             entity.Property(e => e.Img)
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Tag).HasMaxLength(500);
             entity.Property(e => e.Title).HasMaxLength(500);
+
+            entity.HasOne(d => d.CreateByNavigation).WithMany(p => p.Blogs)
+                .HasForeignKey(d => d.CreateBy)
+                .HasConstraintName("FK_Blog_CreateBy");
         });
 
         modelBuilder.Entity<Category>(entity =>

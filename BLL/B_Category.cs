@@ -17,6 +17,11 @@ namespace BLL
             CreateFactory.GetCategory().Add(categoryName);
         }
 
+        public int Count()
+        {
+            return CreateFactory.GetCategory().Count();
+        }
+
         public void Delete(int id)
         {
             CreateFactory.GetCategory().Delete(id);

@@ -17,7 +17,7 @@ namespace IDAL
         AdminInfoEntityModel FindByToken(string token);
         void Update(string token,AdminUpdateInfoEntityModel entity);
         void Delete(int id);
-        int AdminsCount();
+        int Count();
         void SendCode(string E_Mail);
     }
 }

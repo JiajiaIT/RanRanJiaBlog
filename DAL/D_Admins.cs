@@ -17,7 +17,7 @@ namespace DAL
             _db = new RanRanJiaBlogContext();
         }
 
-        public int AdminsCount()
+        public int Count()
         {
             var count = _db.Admins.Count();
             return count;

@@ -183,8 +183,8 @@ namespace WebAPI.Controllers
         /// 管理员数量
         /// </summary>
         /// <returns></returns>
-        [HttpGet, Route("AdminsCount")]
-        public Result<int> AdminsCount()
+        [HttpGet, Route("Count")]
+        public Result<int> Count()
         {
             try
             {
@@ -205,7 +205,7 @@ namespace WebAPI.Controllers
                     What = "请求查询管理员数量",
                 };
                 _B_Extend.WriteLog(writeLog);
-                var count = _B_Admin.AdminsCount();
+                var count = _B_Admin.Count();
                 var result = new Result<int>
                 {
                     Data = count

@@ -19,5 +19,7 @@ public partial class Admin
 
     public virtual ICollection<AdminInfo> AdminInfos { get; } = new List<AdminInfo>();
 
+    public virtual ICollection<Blog> Blogs { get; } = new List<Blog>();
+
     public virtual ICollection<Token> Tokens { get; } = new List<Token>();
 }

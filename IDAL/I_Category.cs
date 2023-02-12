@@ -14,5 +14,6 @@ namespace IDAL
         void Add(string categoryName);
         void Update(int id, string categoryName);
         void Delete(int id);
+        int Count();
     }
 }

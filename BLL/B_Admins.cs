@@ -12,9 +12,9 @@ namespace BLL
 {
     public class B_Admins : I_Admins
     {
-        public int AdminsCount()
+        public int Count()
         {
-            return CreateFactory.GetAdmins().AdminsCount();
+            return CreateFactory.GetAdmins().Count();
         }
 
         public void Delete(int id)

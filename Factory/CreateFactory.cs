@@ -22,5 +22,13 @@ namespace Factory
         {
             return (I_Category)Assembly.Load("DAL").CreateInstance("DAL.D_Category");
         }
+        public static I_Tag GetTag()
+        {
+            return (I_Tag)Assembly.Load("DAL").CreateInstance("DAL.D_Tag");
+        }
+        public static I_Blogs GetBlogs()
+        {
+            return (I_Blogs)Assembly.Load("DAL").CreateInstance("DAL.D_Blogs");
+        }
     }
 }

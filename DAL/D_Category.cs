@@ -35,6 +35,12 @@ namespace DAL
             }
         }
 
+        public int Count()
+        {
+            var count = _db.Categories.Count();
+            return count;
+        }
+
         public void Delete(int id)
         {
             var _Category = _db.Categories.First(x => x.Id == id);

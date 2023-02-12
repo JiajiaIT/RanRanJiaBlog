@@ -11,28 +11,28 @@ namespace WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class TagController : ControllerBase
     {
-        public B_Category _B_Category;
+        public B_Tag _B_Tag;
         public B_Extend _B_Extend;
-        public CategoryController()
+        public TagController()
         {
-            _B_Category = new B_Category();
+            _B_Tag = new B_Tag();
             _B_Extend = new B_Extend();
         }
         /// <summary>
-        /// 分类列表
+        /// 标签列表
         /// </summary>
         /// <param name="page">当前页数</param>
         /// <param name="pagesize">每页个数</param>
         /// <returns></returns>
         [HttpGet, Route("List/{page}/{pagesize}")]
-        public Result<List<CategoryEntityModel>> List(int page, int pagesize)
+        public Result<List<TagEntityModel>> List(int page, int pagesize)
         {
             try
             {
-                var data = _B_Category.List(page, pagesize);
-                var result = new Result<List<CategoryEntityModel>>
+                var data = _B_Tag.List(page, pagesize);
+                var result = new Result<List<TagEntityModel>>
                 {
                     Data = data
                 };
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                var result = new Result<List<CategoryEntityModel>>
+                var result = new Result<List<TagEntityModel>>
                 {
                     State = false,
                     Msg = ex.Message
@@ -49,17 +49,17 @@ namespace WebAPI.Controllers
             }
         }
         /// <summary>
-        /// 根据ID查询分类
+        /// 根据ID查询标签
         /// </summary>
-        /// <param name="id">分类ID</param>
+        /// <param name="id">标签ID</param>
         /// <returns></returns>
         [HttpGet, Route("FindByID/{id}")]
-        public Result<CategoryEntityModel> FindByID(int id)
+        public Result<TagEntityModel> FindByID(int id)
         {
             try
             {
-                var data = _B_Category.FindByID(id);
-                var result = new Result<CategoryEntityModel>
+                var data = _B_Tag.FindByID(id);
+                var result = new Result<TagEntityModel>
                 {
                     Data = data
                 };
@@ -67,7 +67,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                var result = new Result<CategoryEntityModel>
+                var result = new Result<TagEntityModel>
                 {
                     State = false,
                     Msg = ex.Message
@@ -76,12 +76,12 @@ namespace WebAPI.Controllers
             }
         }
         /// <summary>
-        /// 添加分类
+        /// 添加标签
         /// </summary>
-        /// <param name="categoryName">分类名</param>
+        /// <param name="tagName">标签名</param>
         /// <returns></returns>
         [HttpPost, Route("Add")]
-        public Result<object> Add([FromForm] string categoryName)
+        public Result<object> Add([FromForm] string tagName)
         {
             try
             {
@@ -99,10 +99,10 @@ namespace WebAPI.Controllers
                 {
                     IP = ip,
                     Who = Request.Headers["Token"],
-                    What = "请求添加分类",
+                    What = "请求添加标签",
                 };
                 _B_Extend.WriteLog(writeLog);
-                _B_Category.Add(categoryName);
+                _B_Tag.Add(tagName);
                 return new Result<object>();
             }
             catch (Exception ex)
@@ -116,13 +116,13 @@ namespace WebAPI.Controllers
             }
         }
         /// <summary>
-        /// 根据ID修改分类
+        /// 根据ID修改标签
         /// </summary>
-        /// <param name="id">分类ID</param>
-        /// <param name="categoryName">分类名</param>
+        /// <param name="id">标签ID</param>
+        /// <param name="tagName">标签名</param>
         /// <returns></returns>
         [HttpPost, Route("Update/{id}")]
-        public Result<object> Update(int id, [FromForm] string categoryName)
+        public Result<object> Update(int id, [FromForm] string tagName)
         {
             try
             {
@@ -140,10 +140,10 @@ namespace WebAPI.Controllers
                 {
                     IP = ip,
                     Who = Request.Headers["Token"],
-                    What = "请求修改分类",
+                    What = "请求修改标签",
                 };
                 _B_Extend.WriteLog(writeLog);
-                _B_Category.Update(id, categoryName);
+                _B_Tag.Update(id, tagName);
                 return new Result<object>();
             }
             catch (Exception ex)
@@ -157,9 +157,9 @@ namespace WebAPI.Controllers
             }
         }
         /// <summary>
-        /// 根据ID删除分类
+        /// 根据ID删除标签
         /// </summary>
-        /// <param name="id">分类ID</param>
+        /// <param name="id">标签ID</param>
         /// <returns></returns>
         [HttpPost, Route("Delete/{id}")]
         public Result<object> Delete(int id)
@@ -180,10 +180,10 @@ namespace WebAPI.Controllers
                 {
                     IP = ip,
                     Who = Request.Headers["Token"],
-                    What = "请求删除分类",
+                    What = "请求删除标签",
                 };
                 _B_Extend.WriteLog(writeLog);
-                _B_Category.Delete(id);
+                _B_Tag.Delete(id);
                 return new Result<object>();
             }
             catch (Exception ex)
@@ -197,7 +197,7 @@ namespace WebAPI.Controllers
             }
         }
         /// <summary>
-        /// 分类数量
+        /// 标签数量
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("Count")]
@@ -219,10 +219,10 @@ namespace WebAPI.Controllers
                 {
                     IP = ip,
                     Who = Request.Headers["Token"],
-                    What = "请求查询分类数量",
+                    What = "请求查询标签数量",
                 };
                 _B_Extend.WriteLog(writeLog);
-                var count = _B_Category.Count();
+                var count = _B_Tag.Count();
                 var result = new Result<int>
                 {
                     Data = count

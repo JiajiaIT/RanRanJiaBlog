@@ -21,7 +21,9 @@ public partial class Blog
 
     public DateTime? CreateTime { get; set; }
 
-    public string? CreateBy { get; set; }
+    public int? CreateBy { get; set; }
 
     public bool? IsShow { get; set; }
+
+    public virtual Admin? CreateByNavigation { get; set; }
 }
