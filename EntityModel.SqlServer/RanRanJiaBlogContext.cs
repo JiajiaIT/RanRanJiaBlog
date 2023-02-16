@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Common;
 
 namespace EntityModel.SqlServer;
 
 public partial class RanRanJiaBlogContext : DbContext
 {
+    public string connectionStrings { get; set; }
     public RanRanJiaBlogContext()
     {
+        connectionStrings = AppSettingHelper.app(new string[] { "ConnectionStrings", "SQLServer" });
     }
 
     public RanRanJiaBlogContext(DbContextOptions<RanRanJiaBlogContext> options)
@@ -31,7 +34,7 @@ public partial class RanRanJiaBlogContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=JIAJIA\\JIAJIA;Initial Catalog=RanRanJiaBlog;User ID=sa;Password=123456;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer(connectionStrings);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

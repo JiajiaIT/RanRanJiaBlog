@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Features;
+﻿using Common;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.StaticFiles;
@@ -7,7 +8,7 @@ using Microsoft.OpenApi.Models;
 using System.IO.Compression;
 using System.Reflection;
 
-namespace WebApplication1
+namespace WebAPI
 {
     public class Startup
     {
@@ -30,6 +31,8 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //注册appsettings读取类
+            services.AddSingleton(new AppSettingHelper(Configuration));
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
