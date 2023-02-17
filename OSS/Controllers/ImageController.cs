@@ -25,7 +25,7 @@ namespace OSS.Controllers
             {
                 Dictionary<string, string> map = new Dictionary<string, string>();
                 //图片存放地址
-                var path = Directory.GetCurrentDirectory() + "\\" + imageInfo.Path;
+                var path = Directory.GetCurrentDirectory() + "\\Content\\" + imageInfo.Path;
                 //判断路径存不存在
                 if (!Directory.Exists(path))
                 {
