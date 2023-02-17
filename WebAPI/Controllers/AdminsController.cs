@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         /// <param name="entity">管理员</param>
         /// <returns></returns>
         [HttpPost, Route("Login")]
-        public Result<string> Login([FromForm] LoginEntityModel entity)
+        public Result<string> Login([FromBody] LoginEntityModel entity)
         {
             try
             {
