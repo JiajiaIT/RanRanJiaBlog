@@ -19,7 +19,7 @@ namespace OSS.Controllers
         /// <param name="imageInfo">图片信息</param>
         /// <returns></returns>
         [HttpPost, Route("[action]")]
-        public Result<string> Save([FromForm]ImageInfo imageInfo)
+        public Result<string> Save([FromForm] ImageInfo imageInfo)
         {
             try
             {
@@ -43,6 +43,17 @@ namespace OSS.Controllers
                     Bitmap bmp = new Bitmap(ms);
                     bmp.Save(file);
                 }
+                //系统留痕
+                var ip = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+                if (string.IsNullOrEmpty(ip))
+                {
+                    ip = HttpContext.Connection.RemoteIpAddress.ToString();
+                }
+                var time = string.Format("{0:U}", date.AddHours(8));
+                var logpath = Directory.GetCurrentDirectory() + "\\Content\\log.txt";
+                StreamWriter streamWriter = new StreamWriter(logpath, true);
+                streamWriter.WriteLine(ip + "\t\t" + time + "\t\t" + "http://OSS.JiaJia.icu/Content/"+imageInfo.Path+"/"+name);
+                streamWriter.Close();
                 var result = new Result<string>
                 {
                     Data = name
