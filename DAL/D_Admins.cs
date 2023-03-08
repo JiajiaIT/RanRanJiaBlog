@@ -93,11 +93,11 @@ namespace DAL
 
         public string Login(LoginEntityModel entity)
         {
-            if (entity.Password != null)
+            if (entity.Password != null&&entity.Password!="")
             {
                 entity.Password = MD5Helper.MD5Encrypt64(entity.Password);
             }
-            var isAccountLogin = entity.Account != null && entity.Password != null;
+            var isAccountLogin = entity.Account != null && entity.Account!="" && entity.Password != null &&entity.Password!="";
             var isE_MailLogin = entity.E_Mail != null && entity.Code != null;
             if (isAccountLogin)
             {

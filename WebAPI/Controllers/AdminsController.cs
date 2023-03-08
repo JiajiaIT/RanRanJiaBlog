@@ -349,7 +349,7 @@ namespace WebAPI.Controllers
         /// <param name="e_Mail">邮箱</param>
         /// <returns></returns>
         [HttpPost, Route("SendCode")]
-        public Result<object> SendCode([FromForm] string e_Mail)
+        public Result<object> SendCode(string e_Mail)
         {
             try
             {
